@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resto User</title>
+</head>
+<script>
+    document.getElementById('cambiaPagina').addEventListener('click', function() {
+        // Reindirizza l'utente alla nuova pagina desiderata
+        window.location.href = 'nuova_pagina.html';
+    });
+</script>
+<style>
+        .griglia_user{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+</style>
+<body>
+    <div class="griglia_user">
+
+        <div class="appuntamenti_user">
+            <h3>In questa sezione puoi gestire e visualizzare i tuoi appuntamenti</h3>
+            <a type="button" class="btn btn-primary" href="/app/trainers.php">PRENOTA APPUNTAMENTO</a>
+            <a type="button" class="btn btn-primary" href="/app/listaappuntamentir.php">VEDI APPUNTAMENTI</a>
+        </div>
+        <div class="corsi_prefe_user">
+            <h3>Ecco i tuoi corsi preferiti</h3>
+            <a type="button" class="btn btn-primary" href="/app/listacorsi.php>">VEDI APPUNTAMENTI</a>
+        </div>
+        <div class="prossime_lezioni_user">
+            <h3>Ecco le tue lezioni</h3>
+            <a type="button" class="btn btn-primary" href="/app/prossimelezioni.php>">VEDI LEZIONI</a>
+        </div>
+    </div>
+    
+</body>
+</html>

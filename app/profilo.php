@@ -6,6 +6,7 @@
     <title>Profilo</title>
 
     <script>
+       
         function validaCambioPsw() {
             var nuovapassword = document.getElementById("nuovapassword").value;
             var confermapassword = document.getElementById("confermapassword").value;
@@ -115,6 +116,14 @@
             </form>
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <?php
+    if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'User'){
+        include 'profilouser_resto.html';
+    }
     
+    ?>
 </body>
 </html>
