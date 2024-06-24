@@ -16,6 +16,20 @@
                 return true;
             }
         }
+        function aggiornaImg() {
+            var fileInput = document.getElementById('imgProfilo');
+            var anteprima = document.getElementById('anteprimaImg');
+
+            if (fileInput.files.length != 0) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    anteprima.src = e.target.result; // sorgente anteprima = url fileinput
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        } 
     </script>
 
     <style>
@@ -64,16 +78,22 @@
     <div class="profcontainer border"> 
         <div class="infoprof">
             <br>
-            <img src="/app/assets/profile.jpg" alt="Immagine profilo"> 
-            <br>
+            <img src="<?php echo $_SESSION['path_img'] ?>" alt="Immagine profilo" name="anteprimaImg" id="anteprimaImg">            
             <br>
             <div class="datiprof">
                 Nome: <?php echo $_SESSION['nome'] ?> <br>
                 Email: <?php echo $_SESSION['email'] ?> <br>
                 Ruolo: <?php echo $_SESSION['ruolo'] ?> <br>
             </div>
-            <br>
+            <form action="cambiaimg.php" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="imgProfilo" class="form-label"></label>
+                    <input class="form-control" id="imgProfilo" name="imgProfilo" type="file" accept="image/png, image/jpeg" onchange="return aggiornaImg();">
+                </div>
+                <button type="submit" class="btn btn-secondary">Cambia immagine</button>
+            </form>
         </div>
+        <br>
 
         <div class="cambiopsw">
             <form action="cambiopsw.php" method="post" onsubmit="return validaCambioPsw();">
