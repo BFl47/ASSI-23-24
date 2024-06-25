@@ -54,7 +54,7 @@
             width: 20em;
             margin-bottom: 1em;
         }
-        img {
+        #anteprimaImg {
             width: 10em;
             height: 10em;
             border-radius: 50%;

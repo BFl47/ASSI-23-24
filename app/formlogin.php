@@ -28,7 +28,19 @@
     </style>
 </head>
 <body>
-<?php include 'template.html'; ?>
+<?php include 'template.html'; 
+    session_start();
+    if (isset($_SESSION['password_reset'])) {
+        echo '<script>alert("Password modificata con successo")</script>';
+        $_SESSION['password_reset'] = false;
+        unset($_SESSION['password_reset']);
+    }
+    if (isset($_SESSION['richiesta_recuperopsw'])) {
+        echo '<script>alert("Richiesta inviata con successo")</script>';
+        $_SESSION['richiesta_recuperopsw'] = false;
+        unset($_SESSION['richiesta_recuperopsw']);
+    }
+?>
 
 <div class="formlogin border">
     <br>
@@ -46,6 +58,9 @@
     </form>
     <br>
     <a href="formsignup.php">Non hai un account? Registrati</a>
+    <br>
+    <br>
+    <a href="formpsw.php">Hai dimenticato la password? Clicca qui!</a>
     <br>
     <br>
 </div>
