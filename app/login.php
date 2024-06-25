@@ -16,6 +16,7 @@
         $result=pg_query_params($dbconn, $q1, array($email, $password));
         
         if ($tuple=pg_fetch_array($result, null, PGSQL_ASSOC)) {
+            $_SESSION['id_log'] = $tuple['id'];
             $_SESSION['email'] = $email;
             $_SESSION['ruolo'] = $tuple['ruolo'];
             $_SESSION['nome'] = $tuple['nome'];

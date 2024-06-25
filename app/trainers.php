@@ -6,35 +6,95 @@
     <title>Trainers</title>
 </head>
 <body>
-<?php
-    
-    $dbconn = pg_connect("host=localhost port=5432 dbname=GymGeniusASSI user=postgres password=password") 
-    or die('Could not connect: ' . pg_last_error());
+<h1>Users Table</h1>
+    <table>
+        <thead>
+            <tr>
+                <th width=250px align="center">Trainer</th>
+                <th width=250px align="center">Email</th>
+                <th width=250px align="center">Disponibilità</th>   
+                <th width=100px></th> 
+                <tr>
+                                            <td><br></td>
+                                         </tr>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+                
+                $dbconn = pg_connect("host=localhost port=5432 dbname=GymGeniusASSI user=postgres password=password") 
+                or die('Could not connect: ' . pg_last_error());
 
-    if ($dbconn) {
-        session_start();
-        include 'templatelog.html'; 
-        $ruolo = 'Trainer';
-        $query = "SELECT * FROM utente WHERE ruolo = $1";
-        $result = pg_query_params($dbconn, $query, array($ruolo));
-        
-        
-        // Verifica se ci sono risultati
-        if (pg_num_rows($result) > 0) {
-            // Iterazione sui risultati della query
-            while ($row = pg_fetch_assoc($result)) {
-                echo "ID: " . $row['id'] . ", Nome: " . $row['nome'] . ", Ruolo: " . $row['ruolo'] . ", Email: ". $row['email']."<br>";
-            }
-        } else {
-            echo "Nessun risultato trovato.";
-        }
+                if ($dbconn) {
+                    session_start();
+                    include 'templatelog.html'; 
+                    $ruolo = 'Trainer';
+                    $query = "SELECT * FROM utente WHERE ruolo = $1";
+                    $result = pg_query_params($dbconn, $query, array($ruolo));
+                    
+                    
+                    // Verifica se ci sono risultati
+                    if (pg_num_rows($result) > 0) {
+                        // Iterazione sui risultati della query
+                        
+                        while ($row = pg_fetch_assoc($result)) {
+                            $emailAddress = $row["email"];
+                            echo "<tr>
+                                    <td>{$row['nome']}</td>
+                                    <td><a href='mailto:".$emailAddress."'>$emailAddress</a></td>
+                                </tr>
+                               ";
+                               $id=$row['id'];
+                               $condition='true';
+                               $q2="SELECT * FROM disp WHERE id=$1 and free=$2";
+                               $r2 = pg_query_params($dbconn, $q2, array($id,$condition));
+                               if (pg_num_rows($r2) > 0) {
+                                    while ($row2 = pg_fetch_assoc($r2)){
+                                        echo "<form action='prenota_appuntamento.php' method='post'>
+                                                <tr>
+                                                    <td><input type='text' value={$row2['id']} hidden id='id_trainer' name='id_trainer'></td>
+                                                    <td></td>
+                                                    <td>
+                                                        <input type='text' readonly value={$row2['data']} id='data_app' name='data_app'>
+                                                        
+                                                    </td>
+                                                    <td>
+                                                        <button type='submit'>Prenota</button>
+                                                    </td>
+                                                </tr>
+                                              </form>
+                                            "; 
+                                    }
+                                    echo "<tr>
+                                            <td><br><br></td>
+                                         </tr>";
+                                    
 
-        // Chiusura della connessione
-        pg_close($db);
-    }else {
-        echo "Connessione al database non riuscita";
-    }
-?>
+                               } else {
+                                    echo "<tr>
+                                            <td>NESSUNA DISPONIBILITÀ</td>
+                                         </tr>
+                                        "; 
+                                }
+                               
+                               
+                        }
+                        
+                        
+                            
+                        } else {
+                            echo "Nessun risultato trovato.";
+                        }
+
+                    // Chiusura della connessione
+                    pg_close($dbconn);
+                    }else {
+                        echo "Connessione al database non riuscita";
+                    }
+            ?>
+        </tbody>
+    </table>
+
     
 </body>
 </html>

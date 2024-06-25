@@ -32,6 +32,7 @@
                         
         $data = pg_query_params($dbconn, $q2, array($id, $ruolo, $nome, $email, $password));
 
+        $_SESSION['id_log'] = $id;
         $_SESSION['ruolo'] = $ruolo;
         $_SESSION['email'] = $email;
         $_SESSION['nome'] = $nome;
