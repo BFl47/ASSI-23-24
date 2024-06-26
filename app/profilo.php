@@ -95,7 +95,6 @@
             </form>
         </div>
         <br>
-
         <div class="cambiopsw">
             <form action="cambiopsw.php" method="post" onsubmit="return validaCambioPsw();">
                 <div class="form-group">

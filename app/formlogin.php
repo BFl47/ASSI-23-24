@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <script>
         <?php
             session_start();
@@ -24,6 +25,10 @@
             margin: 0 auto;
             width: 40em;
             margin-bottom: 1em;
+        }
+        .linkgithub {
+            color: white;
+            text-decoration:none;
         }
     </style>
 </head>
@@ -57,12 +62,19 @@
         <button type="submit" class="btn btn-primary">Accedi</button>
     </form>
     <br>
+    <button class="btn btn-secondary btn-dark"><a href="oauth_login.php" class="linkgithub" >Accedi con GitHub &nbsp;&nbsp;</a><i class="bi bi-github"></i></button>
+
+    <br>
+    <br>
+    
     <a href="formsignup.php">Non hai un account? Registrati</a>
     <br>
     <br>
     <a href="formpsw.php">Hai dimenticato la password? Clicca qui!</a>
     <br>
     <br>
+
+    
 </div>
 </body>
 </html>
