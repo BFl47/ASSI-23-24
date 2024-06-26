@@ -4,6 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainers</title>
+
+    <script>
+        <?php
+            session_start();
+            if (isset($_SESSION['prenotato'])) {
+                if($_SESSION['prenotato']==true){
+                    echo 'alert("Prenotazione effettuata!")';
+                    $_SESSION['prenotato']=false;
+                }else{
+                    echo 'alert("Attenzione! Hai già una prenotazione attiva in questa data")';
+                }
+                unset( $_SESSION['prenotato']);
+            } 
+        ?>
+    </script>
 </head>
 <body>
 <h1>Users Table</h1>
@@ -42,7 +57,7 @@
                             echo "<tr>
                                     <td>{$row['nome']}</td>
                                     <td><a href='mailto:".$emailAddress."'>$emailAddress</a></td>
-                                </tr>
+                                
                                ";
                                $id=$row['id'];
                                $condition='true';
@@ -50,7 +65,8 @@
                                $r2 = pg_query_params($dbconn, $q2, array($id,$condition));
                                if (pg_num_rows($r2) > 0) {
                                     while ($row2 = pg_fetch_assoc($r2)){
-                                        echo "<form action='prenota_appuntamento.php' method='post'>
+                                        echo "</tr>
+                                                <form action='prenota_appuntamento.php' method='post'>
                                                 <tr>
                                                     <td><input type='text' value={$row2['id']} hidden id='id_trainer' name='id_trainer'></td>
                                                     <td></td>
@@ -71,8 +87,12 @@
                                     
 
                                } else {
-                                    echo "<tr>
-                                            <td>NESSUNA DISPONIBILITÀ</td>
+                                    echo "<td>
+                                            NESSUNA DISPONIBILITÀ
+                                         </td>
+                                         </tr>
+                                         <tr>
+                                            <td><br><br></td>
                                          </tr>
                                         "; 
                                 }
@@ -82,15 +102,15 @@
                         
                         
                             
-                        } else {
-                            echo "Nessun risultato trovato.";
-                        }
+                    } else {
+                        echo "Nessun risultato trovato.";
+                    }
 
                     // Chiusura della connessione
                     pg_close($dbconn);
-                    }else {
-                        echo "Connessione al database non riuscita";
-                    }
+                }else {
+                    echo "Connessione al database non riuscita";
+                }
             ?>
         </tbody>
     </table>
