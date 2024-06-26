@@ -2,5 +2,8 @@
     "require-dev": {
         "phpunit/phpunit": "^10.0",
         "behat/behat": "^3.14"
+    },
+    "require": {
+        "league/oauth2-github": "^3.1"
     }
 }

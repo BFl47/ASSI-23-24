@@ -21,7 +21,7 @@
             $_SESSION['ruolo'] = $tuple['ruolo'];
             $_SESSION['nome'] = $tuple['nome'];
             $_SESSION['path_img'] = $tuple['path_img'];
-            //echo $_SESSION['path_img'];
+    
             header('Location: /app/home.php'); 
             exit;
         }
