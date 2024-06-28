@@ -29,7 +29,7 @@
         else {
             include 'template.html'; 
         }
-        echo "<h3>".$_SESSION['nome'].", ecco i tuoi appuntamenti:</h3><br>";
+        echo "<h3>".$_SESSION['nome'].", ecco le tue disponibilità con appuntamenti prenotati:</h3><br>";
     ?>
 
 <table>
@@ -41,15 +41,17 @@
 
      if ($dbconn) {
         $id=$_SESSION['id_log'];
-        $query = "select * from appuntamento,utente where id_user=$1 and appuntamento.id_trainer=utente.id";
+        $query = "SELECT * FROM disp LEFT JOIN appuntamento ON disp.id_trainer=appuntamento.id_trainer AND disp.data_d = appuntamento.data_a LEFT JOIN utente ON appuntamento.id_user=utente.id WHERE disp.id_trainer=$1";
         $result = pg_query_params($dbconn, $query, array($id));
         if (pg_num_rows($result) > 0) {
 
             echo"<thead>
                         <tr>
-                            <th width=250px align='center'>Trainer</th>
-                            <th width=250px align='center'>Email</th>
-                            <th width=250px align='center'>Data</th>   
+                            
+                            
+                            <th width=250px align='center'>Data</th>  
+                            <th width=250px align='center'>Prenotato</th>
+                            <th width=250px align='center'>Contatta</th>
                             <th width=100px></th> 
                             <tr>
                                                         <td><br></td>
@@ -58,26 +60,43 @@
                     </thead>
                 ";
             while ($row = pg_fetch_assoc($result)) {
-
                 $emailAddress = $row["email"];
-                
-                
-                echo "<tr>
-                        <form action='ucancella_appuntamento.php' method='post'>
+                $flag = $row["free"];
+                $data = $row["data_d"];
+
+                if($flag=="f"){
+                    echo "<tr>
+                        <form action='tcancella_disponibiltà.php' method='post'>
                             
-                            <td>{$row['nome']}</td>
+                            <td><input type='text' readonly value=$data id='data_app' name='data_app'></td>
+                            <td><input type='text' readonly value={$row['nome']} id='nome_prenotato' name='nome_prenotato'></td>
                             <td><a href='mailto:".$emailAddress."'>$emailAddress</a></td>
-                            <td><input type='text' readonly value={$row['data_a']} id='data_app' name='data_app'></td>
                             <td><button type='submit'>Cancella</button></td>
-                            <td><input type='text' value={$row['id_trainer']} hidden id='id_trainer' name='id_trainer'></td>
-                        </form>
+                            <td><input type='text' value={$row['id']} hidden id='id_user' name='id_user'></td>
+                            <td><input type='text' value={$row['free']} hidden id='free_flag' name='free_flag'></td>
+                        <form>
                     
                    ";
+                }else if($flag=="t"){
+                    echo "<tr>
+                        <form action='tcancella_disponibiltà.php' method='post'>
+                            
+                            <td><input type='text' readonly value=$data id='data_app' name='data_app'></td>
+                            <td></td>
+                            <td></td>
+                            <td><button type='submit'>Cancella</button></td>
+                            <td><input type='text' value={$row['free']}  hidden id='free_flag' name='free_flag'></td>
+                        </form>
+                   ";
+                    
+                }
+                
+                
             }
                    
         } else {
             echo "<td>
-                    NESSUN APPUNTAMENTO
+                    NESSUNA DISPONIBILITÀ
                 </td>";
                  
         }

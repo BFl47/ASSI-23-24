@@ -61,17 +61,17 @@
                                ";
                                $id=$row['id'];
                                $condition='true';
-                               $q2="SELECT * FROM disp WHERE id=$1 and free=$2";
+                               $q2="SELECT * FROM disp WHERE id_trainer=$1 and free=$2";
                                $r2 = pg_query_params($dbconn, $q2, array($id,$condition));
                                if (pg_num_rows($r2) > 0) {
                                     while ($row2 = pg_fetch_assoc($r2)){
                                         echo "</tr>
                                                 <form action='prenota_appuntamento.php' method='post'>
                                                 <tr>
-                                                    <td><input type='text' value={$row2['id']} hidden id='id_trainer' name='id_trainer'></td>
+                                                    <td><input type='text' value={$row2['id_trainer']} hidden id='id_trainer' name='id_trainer'></td>
                                                     <td></td>
                                                     <td>
-                                                        <input type='text' readonly value={$row2['data']} id='data_app' name='data_app'>
+                                                        <input type='text' readonly value={$row2['data_d']} id='data_app' name='data_app'>
                                                         
                                                     </td>
                                                     <td>

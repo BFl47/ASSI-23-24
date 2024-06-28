@@ -119,10 +119,13 @@
     <br>
     <br>
     <?php
-    if (isset($_SESSION['ruolo']) && $_SESSION['ruolo'] == 'User'){
-        include 'profilouser_resto.html';
+    if (isset($_SESSION['ruolo'])){
+            if($_SESSION['ruolo'] == 'User'){
+                include 'profilouser_resto.html';
+            }else if($_SESSION['ruolo'] == 'Trainer'){
+                include 'profilotrainer_resto.html';
+            }
     }
-    
     ?>
 </body>
 </html>
