@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymGenius</title>
-
+    <style>
+    #data_app{
+            border:none;
+    }
+    #nome_prenotato{
+        border:none;
+    }
+    </style>
     <script>
         <?php
             session_start();

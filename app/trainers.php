@@ -4,7 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trainers</title>
+    <style> 
+        #data_app{
+            border:none;
+        }
 
+    </style>
     <script>
         <?php
             session_start();
