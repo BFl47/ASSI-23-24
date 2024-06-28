@@ -5,25 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GymGenius</title>
     <style>
-    #data_app{
+    #data_ad{
             border:none;
     }
     #nome_prenotato{
         border:none;
     }
     </style>
+        <script>
+        function valida_disp(event) {
+            const dataInput = document.getElementById('data_nuovad').value;
+            const dataPattern = /^\d{4}-\d{2}-\d{2}$/;
+
+            if (!dataPattern.test(dataInput)) {
+                alert("Inserisci una data valida nel formato AAAA-MM-GG.");
+                event.preventDefault();
+                return false;
+            }
+
+            const data = new Date(dataInput);
+            const oggi = new Date();
+
+            
+            oggi.setHours(0, 0, 0, 0);
+
+            if (isNaN(data.getTime()) || data < oggi) {
+                alert("Inserisci una data non passata.");
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    <script>
+        function chiediConferma(event) {
+            var risposta = confirm("Stai per cancellare un appuntamento con un utente, procedere?");
+            if (!risposta) {
+                event.preventDefault();
+            }
+        }
+    </script>
     <script>
         <?php
             session_start();
+
+            if(isset($_SESSION['ins_disp'])){
+                if($_SESSION['ins_disp']==true){
+                    echo 'alert("Disponibilità inserita correttamente")';
+                    $_SESSION['ins_disp']=false;
+                }else{
+                    echo 'alert("Hai già inserito una disponibilità in questa data")';
+                }
+                unset( $_SESSION['ins_disp']);
+            }
             if (isset($_SESSION['appuntamento_rimosso'])) {
                 if($_SESSION['appuntamento_rimosso']==true){
-                    echo 'alert("Appuntamento rimosso!")';
+                    echo 'alert("Appuntamento rimosso! L\'utente verrà notificato via e-mail")';
                     $_SESSION['appuntamento_rimosso']=false;
                 }else{
                     echo 'alert("Attenzione! Non hai un appuntamento prenotato con queste caratteristiche")';
                 }
                 unset( $_SESSION['appuntamento_rimosso']);
-            } 
+            }else if (isset($_SESSION['disp_rimossa'])) {
+                if($_SESSION['disp_rimossa']==true){
+                    echo 'alert("Disponibilità rimossa!")';
+                    $_SESSION['disp_rimossa']=false;
+                }else{
+                    echo 'alert("Attenzione! Non hai un appuntamento prenotato con queste caratteristiche")';
+                }
+                unset( $_SESSION['disp_rimossa']);
+            }
+
         ?>
     </script>
 </head>
@@ -73,28 +126,35 @@
 
                 if($flag=="f"){
                     echo "<tr>
-                        <form action='tcancella_disponibiltà.php' method='post'>
+                        <form action='tcancella_appdisp.php' method='post' onsubmit='chiediConferma(event)'>
                             
-                            <td><input type='text' readonly value=$data id='data_app' name='data_app'></td>
+                            <td><input type='text' readonly value=$data id='data_ad' name='data_ad'></td>
                             <td><input type='text' readonly value={$row['nome']} id='nome_prenotato' name='nome_prenotato'></td>
                             <td><a href='mailto:".$emailAddress."'>$emailAddress</a></td>
-                            <td><button type='submit'>Cancella</button></td>
+                            <td><button type='submit'>Cancella appuntamento</button></td>
                             <td><input type='text' value={$row['id']} hidden id='id_user' name='id_user'></td>
                             <td><input type='text' value={$row['free']} hidden id='free_flag' name='free_flag'></td>
-                        <form>
+                            
+                        </form>
                     
                    ";
+                   echo "<tr>
+                                            <td><br></td>
+                                         </tr>";
                 }else if($flag=="t"){
                     echo "<tr>
-                        <form action='tcancella_disponibiltà.php' method='post'>
+                        <form action='tcancella_appdisp.php' method='post'>
                             
-                            <td><input type='text' readonly value=$data id='data_app' name='data_app'></td>
+                            <td><input type='text' readonly value=$data id='data_ad' name='data_ad'></td>
                             <td></td>
                             <td></td>
-                            <td><button type='submit'>Cancella</button></td>
+                            <td><button type='submit'>Cancella disponibilità</button></td>
                             <td><input type='text' value={$row['free']}  hidden id='free_flag' name='free_flag'></td>
                         </form>
                    ";
+                   echo "<tr>
+                                            <td><br></td>
+                                         </tr>";
                     
                 }
                 
@@ -114,5 +174,12 @@
     
 ?>
 </table>
+<br>
+<br>
+Da qui puoi aggiungere disponibilità
+<form action="taggiungi_disp.php" method="POST" onsubmit="valida_disp(event)">
+    <tr><input type="date" id="data_nuovad" name="data_nuovad"></tr>
+    <td><button type='submit'>Aggiungi disponibilità</button></td>
+</form>
 </body>
 </html>
