@@ -35,10 +35,18 @@
 
     <style>
         .profcontainer {
-            margin-left: 20em;
+            margin-left: 15em;
             margin-top: 5em;
             text-align: center;
             width: 30em;
+            height: auto;
+        }
+        .restoprofilo {
+            margin-left: 55em;
+            margin-top: -50.5em;
+            width: 50em;
+            height: auto;
+            padding: 5em;
         }
         .infoprof {
             margin: 0 auto;
@@ -46,8 +54,9 @@
             margin-bottom: 1em;
         }
         .datiprof {
-            margin-left: 5em;
+            margin-left: 1em;
             text-align: left;
+            width: 30em;
         }
         .form-group {
             margin: 0 auto;
@@ -58,7 +67,7 @@
             width: 10em;
             height: 10em;
             border-radius: 50%;
-        }
+        } 
     </style>
 </head>
 <body>
@@ -79,7 +88,8 @@
     <div class="profcontainer border"> 
         <div class="infoprof">
             <br>
-            <img src="<?php echo $_SESSION['path_img'] ?>" alt="Immagine profilo" name="anteprimaImg" id="anteprimaImg">            
+            <img src="<?php echo $_SESSION['path_img'] ?>" alt="Immagine profilo" name="anteprimaImg" id="anteprimaImg">  
+            <br>          
             <br>
             <div class="datiprof">
                 Nome: <?php echo $_SESSION['nome'] ?> <br>
@@ -93,39 +103,46 @@
                 </div>
                 <button type="submit" class="btn btn-secondary">Cambia immagine</button>
             </form>
-        </div>
-        <br>
-        <div class="cambiopsw">
-            <form action="cambiopsw.php" method="post" onsubmit="return validaCambioPsw();">
+
+            <br>
+            
+            <form action="cambiapsw.php" method="post" onsubmit="return validaCambioPsw()">
                 <div class="form-group">
                     <label for="vecchiapassword">Vecchia password</label>
-                    <input type="password" class="form-control" id="vecchiapassword" name="vecchiapassword" required>
+                    <input type="password" class="form-control" id="vecchiapassword" name="vecchiapassword" required <?php if (isset($_SESSION['github'])) echo 'disabled';?> >
                 </div>
                 <div class="form-group">
                     <label for="nuovapassword">Nuova password</label>
-                    <input type="password" class="form-control" id="nuovapassword" name="nuovapassword" required>
+                    <input type="password" class="form-control" id="nuovapassword" name="nuovapassword" required <?php if (isset($_SESSION['github'])) echo 'disabled';?> >
                 </div>
                 <div class="form-group">
                     <label for="confermapassword">Conferma password</label>
-                    <input type="password" class="form-control" id="confermapassword" name="confermapassword" required>
+                    <input type="password" class="form-control" id="confermapassword" name="confermapassword" required  <?php if (isset($_SESSION['github'])) echo 'disabled';?> >
                 </div>
                 <button type="submit" class="btn btn-secondary">Cambia password</button>
                 <br>
                 <br>
             </form>
         </div>
+    
     </div>
+
     <br>
     <br>
     <br>
-    <?php
-    if (isset($_SESSION['ruolo'])){
-            if($_SESSION['ruolo'] == 'User'){
-                include 'profilouser_resto.html';
-            }else if($_SESSION['ruolo'] == 'Trainer'){
-                include 'profilotrainer_resto.html';
-            }
-    }
-    ?>
+
+    <div class="restoprofilo border">
+        <?php
+        if (isset($_SESSION['ruolo'])){
+                if($_SESSION['ruolo'] == 'User'){
+                    include 'profilouser_resto.html';
+                }else if($_SESSION['ruolo'] == 'Trainer'){
+                    include 'profilotrainer_resto.html';
+                } else if($_SESSION['ruolo'] == 'Admin'){
+                    include 'profiloadmin_resto.html';
+                }
+        }
+        ?>
+    </div>
 </body>
 </html>

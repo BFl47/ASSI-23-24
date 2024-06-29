@@ -23,10 +23,15 @@
                 unset( $_SESSION['prenotato']);
             } 
         ?>
+
+        function confermaEliminazione() {
+            var conferma = confirm("Sei sicuro di voler procedere?");
+            return conferma;
+        }
     </script>
 </head>
 <body>
-<h1>Users Table</h1>
+<!-- <h1>Users Table</h1> per qualche motivo compare sopra la barra di login/logout -->
     <table>
         <thead>
             <tr>
@@ -60,7 +65,11 @@
                         while ($row = pg_fetch_assoc($result)) {
                             $emailAddress = $row["email"];
                             echo "<tr>
-                                    <td>{$row['nome']}</td>
+                                    <td>{$row['nome']}"; 
+                                    if ($_SESSION['ruolo']=='Admin') {
+                                        echo '&nbsp;&nbsp;<a href="elimina_trainer.php?id='.$row['id'].'" type="button" class="btn btn-danger" target="_blank" onclick="return confermaEliminazione();">Elimina</a>';
+                                    }
+                                    echo "</td>
                                     <td><a href='mailto:".$emailAddress."'>$emailAddress</a></td>
                                 
                                ";

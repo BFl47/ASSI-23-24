@@ -58,6 +58,7 @@
                 else {
                     $_SESSION['path_img'] = $tuple['path_img'];
                 }
+                $_SESSION['github'] = true;
                 header('Location: /app/home.php');
             } else {
                 echo "Registrazione non riuscita";
