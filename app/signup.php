@@ -36,7 +36,7 @@
         $_SESSION['ruolo'] = $ruolo;
         $_SESSION['email'] = $email;
         $_SESSION['nome'] = $nome;
-        $_SESSION['path_img'] = "/assets/img/default.jpg";
+        $_SESSION['path_img'] = "/app/assets/profile.jpg";
         
         header('Location: /app/home.php');
     }
