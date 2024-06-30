@@ -34,6 +34,38 @@
             <input type="submit" class="form-control btn-primary" name="submit" value="Add Event"/>
         </div>
     </form>
+    <br>
+    Cancella evento: <a href="deleteEvent.php">Cancella</a>
+    <br>
+    <br>
+    <form method="post" action="editEvent.php" class="form">
+        id prova = 66810c39b3bca
+        <div class="form-group">
+            <label>Nome Evento</label>
+            <input type="text" class="form-control" name="nomeeventoed" required>
+        </div>
+        <div class="form-group">
+            <label>Descrizione Evento</label>
+            <textarea name="descrizioneeventoed" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Luogo</label>
+            <input type="text" name="luogoeventoed" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Data</label>
+            <input type="date" name="dataeventoed" class="form-control" required>
+        </div>
+        <div class="form-group time">
+            <label>Time</label>
+            <input type="time" name="time_fromed" class="form-control">
+            <span>TO</span>
+            <input type="time" name="time_toed" class="form-control">
+        </div>
+        <div class="form-group">
+            <input type="submit" class="form-control btn-primary" name="submit" value="Edit Event"/>
+        </div>
+    </form>
 </div>
 </body>
 </html>
