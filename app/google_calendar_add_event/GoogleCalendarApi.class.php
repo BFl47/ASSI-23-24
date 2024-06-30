@@ -1,13 +1,5 @@
 <?php 
-/** 
- * 
- * This Google Calendar API handler class is a custom PHP library to handle the Google Calendar API calls. 
- * 
- * @class        GoogleCalendarApi 
- * @author        CodexWorld 
- * @link        http://www.codexworld.com 
- * @version        1.0 
- */ 
+
 class GoogleCalendarApi { 
     const OAUTH2_TOKEN_URI = 'https://accounts.google.com/o/oauth2/token'; 
     const CALENDAR_TIMEZONE_URI = 'https://www.googleapis.com/calendar/v3/users/me/settings/timezone'; 
@@ -160,5 +152,28 @@ class GoogleCalendarApi {
         $hoursAndSec = gmdate('H:i', abs($offsetInSecs)); 
         return stripos($offsetInSecs, '-') === false ? "+{$hoursAndSec}" : "-{$hoursAndSec}"; 
     } 
+
+    public function DeleteCalendarEvent($access_token, $calendar_id, $event_id) { 
+        $apiURL = self::CALENDAR_EVENT . $calendar_id . '/events/' . $event_id; 
+
+        $ch = curl_init();         
+        curl_setopt($ch, CURLOPT_URL, $apiURL);         
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);         
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");         
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE); 
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Authorization: Bearer '. $access_token));     
+        $data = json_decode(curl_exec($ch), true); 
+        $http_code = curl_getinfo($ch,CURLINFO_HTTP_CODE);         
+
+        if ($http_code != 204) {  // 204 No Content indicates successful deletion
+            $error_msg = 'Failed to delete event'; 
+            if (curl_errno($ch)) { 
+                $error_msg = curl_error($ch); 
+            } 
+            throw new Exception('Error '.$http_code.': '.$error_msg); 
+        } 
+
+        return true; 
+    }
 } 
 ?>
