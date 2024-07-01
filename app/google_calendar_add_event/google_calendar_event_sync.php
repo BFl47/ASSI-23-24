@@ -28,7 +28,10 @@ if(isset($_GET['code'])){
             $calendar_event = array( 
                 'summary' => $tuple['nome'], 
                 'location' => $tuple['luogo'], 
-                'description' => $tuple['descrizione'] 
+                'description' => $tuple['descrizione'],
+                'recurrence' => [
+                    'RRULE:FREQ=WEEKLY;COUNT=10'  // Prova ricorrenza
+                ]
             ); 
              
             $event_datetime = array( 
@@ -69,29 +72,6 @@ if(isset($_GET['code'])){
                         $statusMsg = '<p>Event #'.$event_id.' has been deleted from Google Calendar successfully!</p>'; 
                         $statusMsg .= '<p><a href="https://calendar.google.com/calendar/" target="_blank">Open Calendar</a>'; 
                     }
-                    // } else if (isset($_SESSION['editEvent'])) {                     // modifica Evento
-                    
-                    //     $google_event_id = $tuple['google_calendar_event_id'];
-                    //     echo "Prima dell'eliminazione<br>";
-                    //     $GoogleCalendarApi->DeleteCalendarEvent($access_token, $calendar_id, $google_event_id);
-                    //     echo "Dopo l'eliminazione<br>";
-
-                    //     echo "prima della creazione<br>";
-                    //     $google_event_id = $GoogleCalendarApi->CreateCalendarEvent($access_token, $calendar_id, $calendar_event, 0, $event_datetime, $user_timezone); 
-                    //     echo "dopo la creazione<br>";
-                        
-                    //     if($google_event_id){ 
-                    //         $q="UPDATE corso set google_calendar_event_id=$1 where id=$2";
-                    //         $result=pg_query_params($dbconn, $q, array($google_event_id, $event_id));
-                            
-                    //         unset($_SESSION['last_event_id']); 
-                    //         unset($_SESSION['google_access_token']); 
-                            
-                    //         $status = 'success'; 
-                    //         $statusMsg = '<p>Event #'.$event_id.' has been edited to Google Calendar successfully!</p>'; 
-                    //         $statusMsg .= '<p><a href="https://calendar.google.com/calendar/" target="_blank">Open Calendar</a>'; 
-                    //     } 
-                    // } 
                     else {                                                        // aggiungi Evento
                         echo "prima della creazione<br>";
                         $google_event_id = $GoogleCalendarApi->CreateCalendarEvent($access_token, $calendar_id, $calendar_event, 0, $event_datetime, $user_timezone); 

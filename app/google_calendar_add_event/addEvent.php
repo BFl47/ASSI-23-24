@@ -5,11 +5,9 @@
         or die('Could not connect: ' . pg_last_error());
 
     session_start();
-    
-    // If the form is submitted 
+
     if(isset($_POST['submit'])){ 
-        
-        // Get event info 
+
         $nome = $_POST['nomeevento']; 
         $descrizione = $_POST['descrizioneevento']; 
         $luogo = $_POST['luogoevento']; 
@@ -17,12 +15,10 @@
         $time_from = $_POST['time_from']; 
         $time_to = $_POST['time_to']; 
 
-        // Insert data into the database 
         $event_id = uniqid();
         $q = "INSERT into corso values ($1,$2,$3, $4,$5, $6,$7)";               
         $data = pg_query_params($dbconn, $q, array($event_id, $nome, $descrizione, $luogo, $data, $time_from, $time_to));
-       
-        // Store event ID in session 
+  
         $_SESSION['last_event_id'] = $event_id; 
                 
         header("Location: $googleOauthURL"); 
