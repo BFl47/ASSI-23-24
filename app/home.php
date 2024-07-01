@@ -47,7 +47,7 @@
 
     <div class="calendario-home border">
         <h2>Calendario corsi</h2>
-        <iframe src="https://calendar.google.com/calendar/embed?src=c_1f9546d9b401e2377cd81a011d90db4d01136ff427891fee6bd7c19181c43709%40group.calendar.google.com&ctz=Europe%2FRome" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://calendar.google.com/calendar/embed?src=c_1f9546d9b401e2377cd81a011d90db4d01136ff427891fee6bd7c19181c43709%40group.calendar.google.com&ctz=Europe%2FRome&wkst=2" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
 
     <div class="descrizione-home border">

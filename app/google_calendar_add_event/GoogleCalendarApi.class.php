@@ -124,6 +124,10 @@ class GoogleCalendarApi {
             $curlPost['start'] = array('dateTime' => $dateTime_start, 'timeZone' => $event_timezone); 
             $curlPost['end'] = array('dateTime' => $dateTime_end, 'timeZone' => $event_timezone); 
         } 
+        if (!empty($event_data['recurrence'])) {
+            $curlPost['recurrence'] = $event_data['recurrence']; 
+        }
+
         $ch = curl_init();         
         curl_setopt($ch, CURLOPT_URL, $apiURL);         
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);         

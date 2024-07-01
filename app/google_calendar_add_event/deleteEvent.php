@@ -5,7 +5,7 @@
     $dbconn = pg_connect("host=localhost port=5432 dbname=GymGeniusASSI user=postgres password=password") 
         or die('Could not connect: ' . pg_last_error());
 
-    $event_id = '66810c51d193a';
+    $event_id = '6682f07aae9ed';    // Prova cancellazione
 
     $q = "SELECT * from corso where id=$1";
     $result = pg_query_params($dbconn, $q, array($event_id));
