@@ -69,8 +69,13 @@ if(isset($_GET['code'])){
                         unset($_SESSION['deleteEvent']);
 
                         $status = 'success'; 
-                        $statusMsg = '<p>Event #'.$event_id.' has been deleted from Google Calendar successfully!</p>'; 
-                        $statusMsg .= '<p><a href="https://calendar.google.com/calendar/" target="_blank">Open Calendar</a>'; 
+
+                        $_SESSION['corsoeliminato'] = true;
+                        header("Location: ../listacorsi.php");
+                        exit();
+
+                        // $statusMsg = '<p>Event #'.$event_id.' has been deleted from Google Calendar successfully!</p>'; 
+                        // $statusMsg .= '<p><a href="https://calendar.google.com/calendar/" target="_blank">Open Calendar</a>'; 
                     }
                     else {                                                        // aggiungi Evento
                         echo "prima della creazione<br>";
@@ -88,6 +93,10 @@ if(isset($_GET['code'])){
                             $status = 'success'; 
                             $statusMsg = '<p>Event #'.$event_id.' has been added to Google Calendar successfully!</p>'; 
                             $statusMsg .= '<p><a href="https://calendar.google.com/calendar/" target="_blank">Open Calendar</a>'; 
+
+                            $_SESSION['corsocreato'] = true;
+                            header("Location: ../listacorsi.php");
+                            exit();
                         } 
                     }
                 } catch(Exception $e) { 
@@ -105,6 +114,7 @@ if(isset($_GET['code'])){
      
     $_SESSION['status_response'] = array('status' => $status, 'status_msg' => $statusMsg); 
     print_r($_SESSION['status_response']);
+
     //header("Location: index.php"); 
     exit(); 
 } 
