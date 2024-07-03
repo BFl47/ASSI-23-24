@@ -21,7 +21,11 @@
                     echo 'alert("Attenzione! Hai già una prenotazione attiva in questa data")';
                 }
                 unset( $_SESSION['prenotato']);
-            } 
+            }
+            if (isset($_SESSION['trainereliminato'])) {
+                echo 'alert("Trainer eliminato con successo!")';
+                unset($_SESSION['trainereliminato']);
+            }
         ?>
 
         function confermaEliminazione() {
@@ -66,6 +70,8 @@
                             $emailAddress = $row["email"];
                             echo "<tr>
                                     <td>{$row['nome']}"; 
+
+                                    // solo admin: eliminazione trainer 
                                     if ($_SESSION['ruolo']=='Admin') {
                                         echo '&nbsp;&nbsp;<a href="elimina_trainer.php?id='.$row['id'].'" type="button" class="btn btn-danger" target="_blank" onclick="return confermaEliminazione();">Elimina</a>';
                                     }

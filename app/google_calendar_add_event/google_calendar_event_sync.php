@@ -111,11 +111,42 @@ if(isset($_GET['code'])){
     }else{ 
         $statusMsg = 'Event reference not found!'; 
     } 
+
+    //$array_id = $_SESSION['course_ids'];
+
+    if (isset($_SESSION['course_ids']) && !empty($_SESSION['course_ids'])) {
+        $array_id = $_SESSION['course_ids'];
+    } else {
+        $array_id = array();
+    }
+    
+    if (isset($_SESSION['eliminaTrainer']) && !empty($array_id)) {
+        $data = $GoogleCalendarApi->GetAccessToken(GOOGLE_CLIENT_ID, REDIRECT_URI, GOOGLE_CLIENT_SECRET, $_GET['code']); 
+        $access_token = $data['access_token']; 
+        $_SESSION['google_access_token'] = $access_token; 
+
+        if(!empty($access_token)){ 
+            $user_timezone = 'Europe/Rome';
+            $calendar_id = 'c_1f9546d9b401e2377cd81a011d90db4d01136ff427891fee6bd7c19181c43709@group.calendar.google.com';
+
+            foreach ($array_id as $id) {
+                $GoogleCalendarApi->DeleteCalendarEvent($access_token, $calendar_id, $id);
+
+                $q="DELETE FROM corso WHERE google_calendar_event_id=$1";
+                $result=pg_query_params($dbconn, $q, array($event_id));
+            } 
+        }
+        unset($_SESSION['eliminaTrainer']);
+        unset($_SESSION['course_ids']);
+
+        $_SESSION['trainereliminato'] = true;
+        header("Location: /app/trainers.php");
+    }
      
     $_SESSION['status_response'] = array('status' => $status, 'status_msg' => $statusMsg); 
-    print_r($_SESSION['status_response']);
+    //print_r($_SESSION['status_response']);
 
-    //header("Location: index.php"); 
+    header("Location: index.php"); 
     exit(); 
 } 
 ?>
