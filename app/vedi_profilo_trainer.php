@@ -40,7 +40,7 @@
     if ($dbconn) {
         session_start();
 
-        
+        include 'templatelog.html'; 
         
         $id_trainer = $_POST['id_trainer_profilo'];
         
