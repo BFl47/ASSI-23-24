@@ -41,6 +41,7 @@
             <tr>
                 <th width=250px align="center">Trainer</th>
                 <th width=250px align="center">Email</th>
+                <th width=250px align="center">Profilo</th>
                 <th width=250px align="center">Disponibilità</th>   
                 <th width=100px></th> 
                 <tr>
@@ -77,6 +78,12 @@
                                     }
                                     echo "</td>
                                     <td><a href='mailto:".$emailAddress."'>$emailAddress</a></td>
+                                    <td>
+                                        <form action='vedi_profilo_trainer.php' method='post'>
+                                        <input type='text' value={$row['id']} hidden id='id_trainer_profilo' name='id_trainer_profilo'>
+                                        <button type='submit'>Vedi profilo</button>
+                                        </form>
+                                    </td>
                                 
                                ";
                                $id=$row['id'];
@@ -89,6 +96,7 @@
                                                 <form action='prenota_appuntamento.php' method='post'>
                                                 <tr>
                                                     <td><input type='text' value={$row2['id_trainer']} hidden id='id_trainer' name='id_trainer'></td>
+                                                    <td></td>
                                                     <td></td>
                                                     <td>
                                                         <input type='text' readonly value={$row2['data_d']} id='data_app' name='data_app'>
@@ -116,6 +124,7 @@
                                          </tr>
                                         "; 
                                 }
+                                
                                
                                
                         }
