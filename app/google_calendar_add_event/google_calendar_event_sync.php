@@ -30,7 +30,7 @@ if(isset($_GET['code'])){
                 'location' => $tuple['luogo'], 
                 'description' => $tuple['descrizione'],
                 'recurrence' => [
-                    'RRULE:FREQ=WEEKLY;COUNT=10'  // Prova ricorrenza
+                    $tuple['rrule']
                 ]
             ); 
              
