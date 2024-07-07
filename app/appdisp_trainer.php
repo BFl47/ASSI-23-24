@@ -59,6 +59,7 @@
                 }
                 unset( $_SESSION['ins_disp']);
             }
+            
             if (isset($_SESSION['appuntamento_rimosso'])) {
                 if($_SESSION['appuntamento_rimosso']==true){
                     echo 'alert("Appuntamento rimosso! L\'utente verrà notificato via e-mail")';
