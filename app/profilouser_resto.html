@@ -7,27 +7,29 @@
 </head>
 
 <style>
-        .griglia_user{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-        }
+    .griglia_user {
+        display: grid;
+        grid-template-columns: 1fr; 
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+    }
+
 </style>
 <body>
     <div class="griglia_user">
-
-        <div class="appuntamenti_user">
-            <h3>In questa sezione puoi gestire e visualizzare i tuoi appuntamenti</h3>
-            <a type="button" class="btn btn-primary" href="/app/trainers.php">PRENOTA APPUNTAMENTO</a>
-            <a type="button" class="btn btn-primary" href="/app/appuntamenti_user.php">VEDI APPUNTAMENTI</a>
+        <div class="appuntamenti_user" style="margin-bottom: 20px;">
+            <h3>I tuoi appuntamenti</h3>
+            <a type="button" class="btn btn-primary" href="/app/trainers.php">Prenota Appuntamento</a>
+            <a type="button" class="btn btn-primary" href="/app/appuntamenti_user.php">Vedi appuntamenti</a>
         </div>
         <div class="corsi_prefe_user">
-            <h3>Ecco i tuoi corsi preferiti</h3>
-            <a type="button" class="btn btn-primary" href="/app/listacorsi.php">VEDI CORSI</a>
+            <h3>I tuoi corsi</h3>
+            <a type="button" class="btn btn-primary" href="/app/corsi_preferiti.php">Vedi preferiti</a>
+            <a type="button" class="btn btn-primary" href="/app/listacorsi.php">Vedi corsi</a>
         </div>
         <div class="prossime_lezioni_user">
-            <h3>Ecco le tue lezioni</h3>
-            <a type="button" class="btn btn-primary" href="/app/prossimelezioni.php>">VEDI LEZIONI</a>
+            <h3>Le tue lezioni</h3>
+            <a type="button" class="btn btn-primary" href="/app/prossime_lezioni.php">Vedi lezioni</a>
         </div>
     </div>
     
