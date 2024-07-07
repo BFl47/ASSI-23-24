@@ -7,22 +7,23 @@
 </head>
 
 <style>
-        .griglia_trainer{
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-        }
+    .griglia_trainer{
+        display: grid;
+        grid-template-columns: 1fr; 
+        grid-template-rows: repeat(2, 1fr);
+        gap: 10px;
+    }
 </style>
 <body>
     <div class="griglia_trainer">
 
         <div class="appdisp_trainer">
             <h3>In questa sezione puoi gestire e visualizzare i tuoi appuntamenti e le disponibilità</h3>
-            <a type="button" class="btn btn-primary" href="/app/appdisp_trainer.php">GESTISCI</a>
+            <a type="button" class="btn btn-primary" href="/app/appdisp_trainer.php">Gestisci</a>
         </div>
         <div class="corsi_trainer">
-            <h3>Qui puoi gestire i tuoi corsi</h3>
-            <a type="button" class="btn btn-primary" href="/app/corsi_trainer.php>">VEDI CORSI</a>
+            <h3>Le tue lezioni</h3>
+            <a type="button" class="btn btn-primary" href="/app/lezioni_trainer.php">Vedi lezioni</a>
         </div>
     </div>
     
