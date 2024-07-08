@@ -102,6 +102,9 @@
                 }
             ?>
         </div>
+        <div class="aggiorna-container">
+            <button id="btn-cancella-lezioni-passate" class="btn btn-primary">Aggiorna lezioni passate</button>
+        </div>
     </div>
 
     <script>
@@ -128,6 +131,23 @@
                 });
             });
         });
+
+        $('#btn-cancella-lezioni-passate').on('click', function() {
+                $.ajax({
+                    url: 'cancella_lezioni_passate.php',
+                    method: 'POST',
+                    success: function(response) {
+                        response = JSON.parse(response);
+                        alert(response.message);
+                        if (response.success) {
+                            location.reload();
+                        }
+                    },
+                    error: function() {
+                        alert('Errore nella comunicazione col server.');
+                    }
+                });
+            });
     </script>
 </body>
 </html>
