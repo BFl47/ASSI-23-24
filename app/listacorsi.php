@@ -36,6 +36,12 @@
     </style>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        function confermaEliminazione() {
+            var conferma = confirm("Sei sicuro di voler procedere?");
+            return conferma;
+        }
+    </script>
 </head>
 <body>
     <?php 
@@ -95,7 +101,7 @@
                             echo '
                             <form id="form-elimina-'.$id_corso.'" method="POST" action="./google_calendar_add_event/deleteEvent.php" style="display:inline;">
                                 <input type="hidden" name="id" value="'.$id_corso.'">
-                                <button type="submit" class="btn btn-danger btn-elimina" id="mod-'.$id_corso.'">Elimina</button>
+                                <button type="submit" class="btn btn-danger btn-elimina" id="mod-'.$id_corso.'" onclick="return confermaEliminazione();">Elimina</button>
                             </form>';
                         }
 
