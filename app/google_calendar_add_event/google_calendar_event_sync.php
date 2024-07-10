@@ -1,6 +1,7 @@
 <?php 
 // Include Google calendar api handler class 
 include_once 'GoogleCalendarApi.class.php'; 
+include_once '../Corso.class.php'; 
 require_once 'config.php'; 
      
 $dbconn = pg_connect("host=localhost port=5432 dbname=GymGeniusASSI user=postgres password=password") 
@@ -95,6 +96,9 @@ if(isset($_GET['code'])){
                             $statusMsg .= '<p><a href="https://calendar.google.com/calendar/" target="_blank">Open Calendar</a>'; 
 
                             $_SESSION['corsocreato'] = true;
+
+                            $_SESSION['corso']->setIdGoogle($google_event_id);
+
                             header("Location: ../listacorsi.php");
                             exit();
                         } 
