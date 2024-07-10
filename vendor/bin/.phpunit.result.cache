@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"RegistrationTest::testRegistration":0.008}}
+{"version":1,"defects":{"CorsoTest::testCostruttore":7},"times":{"RegistrationTest::testRegistration":0.004,"CorsoTest::testCostruttore":0.001,"CorsoTest::testSetters":0}}
