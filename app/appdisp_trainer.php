@@ -62,7 +62,7 @@
             
             if (isset($_SESSION['appuntamento_rimosso'])) {
                 if($_SESSION['appuntamento_rimosso']==true){
-                    echo 'alert("Appuntamento rimosso! L\'utente verrà notificato via e-mail")';
+                    echo 'alert("Appuntamento rimosso!")';
                     $_SESSION['appuntamento_rimosso']=false;
                 }else{
                     echo 'alert("Attenzione! Non hai un appuntamento prenotato con queste caratteristiche")';

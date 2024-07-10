@@ -1,4 +1,6 @@
 <?php 
+    include_once './Utente.class.php'; 
+    
     session_start();
 
     $dbconn = pg_connect("host=localhost port=5432 dbname=GymGeniusASSI user=postgres password=password") 
@@ -21,6 +23,9 @@
 
         $token = bin2hex(random_bytes(20));
         $scadenza = date("Y-m-d H:i:s", strtotime('+1 hour'));
+
+        $_SESSION['utente']->setToken($token);
+        $_SESSION['utente']->setScadenza($scadenza);
 
         $q = "UPDATE utente set token=$1, scadenza=$2 where email=$3";
         $result = pg_query_params($dbconn, $q, array($token, $scadenza, $email));

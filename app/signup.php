@@ -1,4 +1,6 @@
 <?php
+    include_once './Utente.class.php'; 
+
     if ($_SERVER["REQUEST_METHOD"] != "POST") {
         header("Location: /app/");
     }
@@ -25,6 +27,17 @@
         $password = $_POST['password'];
         $password = hash('sha256', $password);
         $ruolo = $_POST['ruolo'];
+
+        if ($ruolo == 'User') {
+            $utente = new User($id, $ruolo, $nome,$email, $path_img = "/app/assets/profile.jpg");
+        }else if($ruolo == 'Trainer'){
+            $utente = new Trainer($id, $ruolo, $nome,$email, $path_img = "/app/assets/profile.jpg");
+        }else if($ruolo == 'Admin'){
+            $utente = new Admin($id, $ruolo, $nome,$email, $path_img = "/app/assets/profile.jpg");
+        }else{
+            echo 'Ruolo inventato';
+        }
+        $_SESSION['utente'] = $utente;
 
         echo $id . ' ' . $nome . ' ' . $email .' ' . $password . ' ' .$ruolo;
         

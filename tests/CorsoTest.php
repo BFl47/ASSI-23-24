@@ -1,5 +1,4 @@
 <?php
-// File: tests/CorsoTest.php
 
 use PHPUnit\Framework\TestCase;
 require_once './app/Corso.class.php';
