@@ -30,6 +30,9 @@
             text-align: left;
             margin-top: 1em;
         }
+        #desc {
+            margin: 1em;
+        }
         .calendario-home {
             margin: 0 auto;
             width: 50em;
@@ -101,7 +104,7 @@
 
     <div class="descrizione-home border">
         <h2>Descrizione</h2>
-        <p>GymGenius è un'applicazione progettata per supportare la gestione di una palestra, fornendo funzionalità specifiche per utenti (clienti), trainer e l'admin</p>
+        <p id="desc">GymGenius è un'applicazione progettata per supportare la gestione di una palestra, fornendo funzionalità specifiche per utenti (clienti), trainer e l'admin.</p>
     </div>
         
     <div class="corsi-home border">
@@ -167,7 +170,10 @@
                 echo "Connessione al database non riuscita";
             }
         ?>
-        <a type="button" class="btn btn-primary" href="/app/listacorsi.php">Più informazioni</a>
+        <div style="text-align: center;">
+            <a type="button" id="more_info" class="btn btn-primary" href="/app/listacorsi.php">Più informazioni</a>
+        </div>
+        
     </div>
 
 </body>
