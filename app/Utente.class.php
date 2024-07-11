@@ -18,7 +18,6 @@ class Utente {
         $this->path_img = $path_img;
     }
 
-    // Metodi getter
     public function getId() {
         return $this->id;
     }
@@ -69,6 +68,10 @@ class User extends Utente {
 class Trainer extends Utente {
     public function __construct($id, $ruolo, $nome, $email, $password, $path_img = "/app/assets/profile.jpg") {
         parent::__construct($id, $ruolo, $nome, $email, $password, $path_img = "/app/assets/profile.jpg");
+    }
+
+    public function creaDisp($data_d) {
+        return new Disp($this->getId(), $data_d, $free = true);
     }
 }
 

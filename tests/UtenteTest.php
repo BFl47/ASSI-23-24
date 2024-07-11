@@ -37,7 +37,7 @@ class UtenteTest extends TestCase {
         $this->assertEquals("/app/assets/profile.jpg", $admin->getPath_img());
     }
 
-    public function testRecuperoPsw()    {
+    public function testRecuperoPsw() {
         $user = new User(1, "User","Mario Rossi","mariorossi@gmail.com","Qwertyuiop1!",$path_img = "/app/assets/profile.jpg");
 
         $user->setToken("newGoogleId789");

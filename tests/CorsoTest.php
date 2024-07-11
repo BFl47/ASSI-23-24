@@ -5,8 +5,7 @@ require_once './app/Corso.class.php';
 require_once './app/Utente.class.php';
 require_once './app/google_calendar_add_event/GoogleCalendarApi.class.php';
 
-class CorsoTest extends TestCase
-{
+class CorsoTest extends TestCase {
     public function testCostruttore() {
         $corso = new Corso(1, "Pilates", "Un corso bello", "Aula 108", "2024-07-15", "09:00", "17:00", "Mario Rossi", "RRULE:FREQ=WEEKLY;BYDAY=TU,TH;", "abc123def456");
 
@@ -58,8 +57,6 @@ class CorsoTest extends TestCase
 
         $_POST = $postData;
 
-        require_once __DIR__ . '/../app/google_calendar_add_event/index.php';
-
         $id = 1;
         $rrule = "RRULE:FREQ=WEEKLY;BYDAY=" . implode(',', $_POST['days']) . ";COUNT=" . intval($_POST['terminadopo']);
 
@@ -94,6 +91,5 @@ class CorsoTest extends TestCase
 
         $this->assertEquals($googleEventId, $corso->getIdGoogle());
    }
-
 }
 ?>
