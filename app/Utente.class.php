@@ -1,13 +1,13 @@
 <?php
 class Utente {
-    protected $id;
-    protected $ruolo;
-    protected $nome;
-    protected $email;
-    protected $password;
-    protected $path_img;
-    protected $token;
-    protected $scadenza;
+    public $id;
+    public $ruolo;
+    public $nome;
+    public $email;
+    public $password;
+    public $path_img;
+    public $token;
+    public $scadenza;
     // Costruttore
     public function __construct($id, $ruolo, $nome, $email, $password, $path_img = "/app/assets/profile.jpg") {
         $this->id = $id;
@@ -34,8 +34,6 @@ class Utente {
     public function getEmail() {
         return $this->email;
     }
-    
-
 
     public function getPassword() {
         return $this->password;
@@ -77,6 +75,10 @@ class Trainer extends Utente {
 class Admin extends Utente {
     public function __construct($id, $ruolo, $nome, $email, $password, $path_img = "/app/assets/profile.jpg") {
         parent::__construct($id, $ruolo, $nome, $email, $password, $path_img = "/app/assets/profile.jpg");
+    }
+
+    public function creaCorso($id, $nome, $descrizione, $luogo, $data, $time_from, $time_to, $trainer, $rrule) {
+        return new Corso($id, $nome, $descrizione, $luogo, $data, $time_from, $time_to, $trainer, $rrule, $id_google = null);
     }
 }
 ?>
