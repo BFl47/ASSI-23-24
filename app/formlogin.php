@@ -59,7 +59,7 @@
             <label for="passwordlog">Password</label>
             <input type="password" class="form-control" id="passwordlog" name="passwordlog" required>
         </div>
-        <button type="submit" class="btn btn-primary">Accedi</button>
+        <button type="submit" class="btn btn-primary" id="accedi">Accedi</button>
     </form>
     <br>
     <button class="btn btn-secondary btn-dark"><a href="oauth_login.php" class="linkgithub" >Accedi con GitHub &nbsp;&nbsp;</a><i class="bi bi-github"></i></button>
