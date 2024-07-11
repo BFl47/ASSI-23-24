@@ -63,7 +63,8 @@
         }
 
         header("Location: $googleOauthURL"); 
-        exit(); 
+        exit();
+    
             
     }
     header("Location: index.php"); 
