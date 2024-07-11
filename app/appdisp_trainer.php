@@ -129,7 +129,7 @@
                     echo "<tr>
                         <form action='tcancella_appdisp.php' method='post' onsubmit='chiediConferma(event)'>
                             
-                            <td><input type='text' readonly value=$data id='data_ad' name='data_ad'></td>
+                            <td><input type='text' readonly hidden value=$data id='data_ad' name='data_ad'>$data</td>
                             <td><input type='text' readonly value={$row['nome']} id='nome_prenotato' name='nome_prenotato'></td>
                             <td><a href='mailto:".$emailAddress."'>$emailAddress</a></td>
                             <td><button type='submit'>Cancella appuntamento</button></td>
@@ -143,10 +143,12 @@
                                             <td><br></td>
                                          </tr>";
                 }else if($flag=="t"){
+                    
                     echo "<tr>
+
                         <form action='tcancella_appdisp.php' method='post'>
                             
-                            <td><input type='text' readonly value=$data id='data_ad' name='data_ad'></td>
+                            <td><input type='text' readonly hidden value=$data id='data_ad' name='data_ad'>$data</td>
                             <td></td>
                             <td></td>
                             <td><button type='submit'>Cancella disponibilità</button></td>
@@ -180,7 +182,7 @@
 Da qui puoi aggiungere disponibilità
 <form action="taggiungi_disp.php" method="POST" onsubmit="valida_disp(event)">
     <tr><input type="date" id="data_nuovad" name="data_nuovad"></tr>
-    <td><button type='submit'>Aggiungi disponibilità</button></td>
+    <td><button type='submit' class="bottone_add_disp">Aggiungi disponibilità</button></td>
 </form>
 </body>
 </html>

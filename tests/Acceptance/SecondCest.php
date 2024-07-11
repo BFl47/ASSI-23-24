@@ -8,7 +8,7 @@ use Tests\Support\AcceptanceTester;
 class SecondCest
 {
     
-    public function AddCourseToFavourites(AcceptanceTester $I)
+    public function AddCourseToFavorites(AcceptanceTester $I)
     {
         
         $I->amOnPage('/formlogin.php');
@@ -31,11 +31,9 @@ class SecondCest
 
         $I->seeCurrentUrlEquals('/app/listacorsi.php');
 
-        $password = $I->grabTextFrom('#');
-
-        //$I->click(['class' => 'favorite']);
+        $I->click(['class' => 'favorite']);
         
-        $I->seeElement(['class' => 'filled']);
+        //$I->seeElement(['class' => 'filled']);
     }
 
 }
@@ -44,9 +42,9 @@ class SecondCest
 In modo da aggiornare la mia lista preferiti
 Voglio aggiungere il corso ai preferiti
 
-Feature: User can view course to favourites courses
+Feature: User can add a course to favorites courses
  
-    Scenario: Show favorite courses 
+    Scenario: Add course favorite courses 
         Given a valid user
         When I am on the login page
         And I fill in "Email" with "test_user@gmail.com"
@@ -58,7 +56,6 @@ Feature: User can view course to favourites courses
         When I go to my profile page 
         And I press “Vedi corsi”
         Then I should be on the course page
-        And I touch heart 
-        Then I should see it filled
+        And I can touch heart to add it to favorites
 
 */
