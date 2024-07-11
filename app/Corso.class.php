@@ -1,15 +1,15 @@
 <?php
 class Corso {
-    private $id;
-    private $nome;
-    private $descrizione;
-    private $luogo;
-    private $data;
-    private $time_from;
-    private $time_to;
-    private $trainer;
-    private $rrule;
-    private $id_google;
+    public $id;
+    public $nome;
+    public $descrizione;
+    public $luogo;
+    public $data;
+    public $time_from;
+    public $time_to;
+    public $trainer;
+    public $rrule;
+    public $id_google;
 
     // Costruttore
     public function __construct($id, $nome, $descrizione, $luogo, $data, $time_from, $time_to, $trainer, $rrule, $id_google = null) {
