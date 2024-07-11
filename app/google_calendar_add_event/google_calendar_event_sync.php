@@ -97,8 +97,6 @@ if(isset($_GET['code'])){
 
                             $_SESSION['corsocreato'] = true;
 
-                            $_SESSION['corso']->setIdGoogle($google_event_id);
-
                             header("Location: ../listacorsi.php");
                             exit();
                         } 
