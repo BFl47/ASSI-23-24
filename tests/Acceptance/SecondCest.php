@@ -33,7 +33,6 @@ class SecondCest
 
         $I->click(['class' => 'favorite']);
         
-        //$I->seeElement(['class' => 'filled']);
     }
 
 }

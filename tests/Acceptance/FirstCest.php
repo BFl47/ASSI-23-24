@@ -17,7 +17,7 @@ class FirstCest
     {
         $I->amOnPage('/formlogin.php');
 
-        $I->fillField('emaillog', 't3@suca.com');
+        $I->fillField('emaillog', 't3@gmail.com');
 
         $I->fillField('passwordlog', 'Qwertyuiop1!');
 

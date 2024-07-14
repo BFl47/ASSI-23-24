@@ -19,6 +19,13 @@
         }
     </style>
     <script>
+        function inArray(needle, haystack) {
+            var length = haystack.length;
+            for(var i = 0; i < length; i++) {
+                if(haystack[i] == needle) return true;
+            }
+            return false;
+        }
         function validaFormSignup() {
             var password = document.getElementById("password").value;
             var confermapassword = document.getElementById("confermapassword").value;
@@ -28,7 +35,7 @@
                 alert("Le password non coincidono");
                 return false;
             }
-            alert("Dati inseriti correttamente");
+            //alert("Dati inseriti correttamente");
             return true;
         }
     </script>
@@ -39,6 +46,11 @@
                 echo 'alert("Spiacente, l\'indirizzo email non é disponibile")';
                 $_SESSION['email_non_disponibile'] = false;
                 unset( $_SESSION['email_non_disponibile']);
+            }
+            if (isset($_SESSION['non_autorizzato'])) {
+                echo 'alert("Spiacente, non hai i permessi necessari")';
+                $_SESSION['non_autorizzato'] = false;
+                unset( $_SESSION['non_autorizzato']);
             }
         ?>
     </script>
@@ -86,7 +98,7 @@
             </div>
 
             <br>
-            <button type="submit" class="btn btn-primary">Signup</button>
+            <button type="submit" class="btn btn-primary" id="signup">Signup</button>
             <br>
             <br>
         </form>

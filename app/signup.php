@@ -28,6 +28,14 @@
         $password = hash('sha256', $password);
         $ruolo = $_POST['ruolo'];
 
+        $array_email_admin = ['admin@admin.it', 'admin1@admin.it'];
+
+        if ($ruolo == 'Admin' and !in_array($email, $array_email_admin)) {
+            $_SESSION['non_autorizzato'] = true;
+            header('Location: /app/formsignup.php'); 
+            exit;
+        }
+
         if ($ruolo == 'User') {
             $utente = new User($id, $ruolo, $nome,$email, $path_img = "/app/assets/profile.jpg");
         }else if($ruolo == 'Trainer'){
