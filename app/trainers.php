@@ -101,10 +101,16 @@
                                                     <td>
                                                         <input type='text' readonly value={$row2['data_d']} id='data_app' name='data_app'>
                                                         
-                                                    </td>
+                                                    </td>";
+                                        if($_SESSION['ruolo']=="User"){
+                                            echo "
                                                     <td>
                                                         <button type='submit'>Prenota</button>
                                                     </td>
+                                                    ";
+                                        }
+                                               
+                                        echo"
                                                 </tr>
                                               </form>
                                             "; 
