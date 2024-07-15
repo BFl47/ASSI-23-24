@@ -142,13 +142,14 @@ if(isset($_GET['code'])){
         unset($_SESSION['course_ids']);
 
         $_SESSION['trainereliminato'] = true;
-        header("Location: /app/trainers.php");
+        header("Location: ../trainers.php");
+        exit();
     }
      
     $_SESSION['status_response'] = array('status' => $status, 'status_msg' => $statusMsg); 
     //print_r($_SESSION['status_response']);
 
-    header("Location: index.php"); 
-    exit(); 
+    //header("Location: index.php"); 
+    //exit(); 
 } 
 ?>
