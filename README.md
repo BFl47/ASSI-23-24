@@ -40,6 +40,3 @@ API: Google Calendar, OAuth
  Sono previste due modalità di accesso al sito: 
 -	Locale -> l’utente può registrarsi direttamente sul sito inserendo i propri dati 
 -	OAuth -> l’utente può accedere al sito direttamente tramite il proprio account GitHub 
-
-### PIANO DEI TEST: 
-Da definire
