@@ -106,7 +106,7 @@
 
             <br>
             
-            <form action="cambiapsw.php" method="post" onsubmit="return validaCambioPsw()">
+            <form action="cambiopsw.php" method="post" onsubmit="return validaCambioPsw()">
                 <div class="form-group">
                     <label for="vecchiapassword">Vecchia password</label>
                     <input type="password" class="form-control" id="vecchiapassword" name="vecchiapassword" required <?php if (isset($_SESSION['github'])) echo 'disabled';?> >
