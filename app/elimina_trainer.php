@@ -22,10 +22,16 @@
         $q = "DELETE FROM utente WHERE id = $1";
         $result = pg_query_params($dbconn, $q, array($id_trainer));
 
-        $_SESSION['course_ids'] = $course_ids;
+        
         $_SESSION['eliminaTrainer'] = true;
-        header("Location: $googleOauthURL");
 
+        if ($course_ids) {
+            $_SESSION['course_ids'] = $course_ids;
+            header("Location: $googleOauthURL");
+        }
+        else {
+            header('Location: /app/trainers.php');
+        }
         exit();
     }
 ?>

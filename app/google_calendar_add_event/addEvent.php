@@ -8,11 +8,19 @@
     session_start();
 
     if(isset($_POST['submit'])){ 
+        $trainer = $_POST['trainerevento'];
+
+        $q0 = "SELECT * from utente where id = $1";
+        $result0 = pg_query_params($dbconn, $q0, array($trainer));
+
+        if ($tuple0 = pg_fetch_array($result0, null, PGSQL_ASSOC)) {
+            $trainer_nome = $tuple0['nome'];
+        }
 
         $nome = $_POST['nomeevento']; 
-        $descrizione = $_POST['descrizioneevento'] . '<br>Trainer: ' . $_POST['trainerevento']; 
+        $descrizione = $_POST['descrizioneevento'] . '<br>Trainer: ' . $trainer_nome; 
         $luogo = $_POST['luogoevento']; 
-        $trainer = $_POST['trainerevento'];
+        
         $data = $_POST['dataevento']; 
         $time_from = $_POST['time_from']; 
         $time_to = $_POST['time_to']; 
