@@ -123,6 +123,7 @@ if(isset($_GET['code'])){
     }
     
     if (isset($_SESSION['eliminaTrainer']) && !empty($array_id)) {
+        echo 'eliminazione trainer';
         $data = $GoogleCalendarApi->GetAccessToken(GOOGLE_CLIENT_ID, REDIRECT_URI, GOOGLE_CLIENT_SECRET, $_GET['code']); 
         $access_token = $data['access_token']; 
         $_SESSION['google_access_token'] = $access_token; 
@@ -142,6 +143,7 @@ if(isset($_GET['code'])){
         unset($_SESSION['course_ids']);
 
         $_SESSION['trainereliminato'] = true;
+        echo 'trainer eliminato';
         header("Location: ../trainers.php");
         exit();
     }
@@ -150,6 +152,6 @@ if(isset($_GET['code'])){
     //print_r($_SESSION['status_response']);
 
     //header("Location: index.php"); 
-    //exit(); 
+    exit(); 
 } 
 ?>
